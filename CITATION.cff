@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite it as below."
+title: "Physics-guided learning for node-availability prediction in solar-powered IoT sensor networks: code and data"
+authors:
+  - family-names: Dagal
+    given-names: Idriss
+    orcid: "https://orcid.org/0000-0002-2073-8956"
+  - family-names: Mahamat
+    given-names: Abakar Limane
+    orcid: "https://orcid.org/0000-0003-1367-842X"
+version: 1.0.0
+date-released: 2026-10-27
+license: MIT
