@@ -1,7 +1,9 @@
 """Physics v2: VRLA energy balance with low-voltage disconnect (LVD), reconnect threshold and cold deep-discharge latch."""
-import numpy as np, sys
+import numpy as np, sys, os
+RES=float(os.environ.get('PGL_RES','0.2'))
 sys.path.insert(0,'.'); import core
 L=core.L
+if 'PGL_PR' in os.environ: L.PR=float(os.environ['PGL_PR'])
 class Cfg:
     def __init__(s,dod=0.5,R=0.5,latch_days=7,T_latch=5.0,driver='Hest'): s.dod=dod; s.R=R; s.latch_days=latch_days; s.T_latch=T_latch; s.driver=driver
 def capw(Tm,dod): return 84.0*dod*L.cap_factor(Tm)/core.CF25
@@ -23,7 +25,7 @@ def run(H,Tm,s,cfg,start,n,obs=None,cm=None,state=None,load=1.0):
             if (not lat) and soc>=cfg.R*c: on=True; offd=0
             u=False
         if obs is not None and not cm[t]:
-            if obs[t]==1 and not u: on=True; lat=False; offd=0; soc=max(soc,0.2*c); u=True
+            if obs[t]==1 and not u: on=True; lat=False; offd=0; soc=max(soc,RES*c); u=True
             elif obs[t]==0 and u: on=False; soc=0.0; offd=max(offd,1); u=False
         socf[t]=soc/c; up[t]=u
     return socf,up,dict(soc=soc,on=on,off_days=offd,latched=lat)

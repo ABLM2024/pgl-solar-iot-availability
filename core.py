@@ -11,7 +11,7 @@ def load():
     drv=pd.read_csv('drivers.csv',parse_dates=['date']).set_index('date')
     days=A.index; com=pd.to_datetime(m.commissioned).values
     valid=np.array([[d>=c for c in com] for d in days])                  # commissioned
-    act=(A.values>=0.25).astype(float)
+    act=(A.values>=float(os.environ.get('PGL_THR','0.25'))).astype(float)
     cnt=(act*valid).sum(1); prev=pd.Series(cnt).shift(1).values
     # common-mode (network-wide, non-energy) days: >=60 % drop vs previous day, recovery to >=80 % within 3 days
     cm=np.zeros(len(days),bool)

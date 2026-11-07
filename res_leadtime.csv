@@ -1,0 +1,5 @@
+model,n_failures,lead_0,lead_1,lead_7,lead_14,lead_28
+Persistence,45,29,0,3,6,7
+Physics prior,45,17,2,7,7,12
+Data-driven ML,45,15,8,5,5,12
+Proposed,45,5,1,2,0,37

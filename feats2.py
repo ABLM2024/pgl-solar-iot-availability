@@ -1,7 +1,8 @@
 import numpy as np, pandas as pd, sys, copy
 sys.path.insert(0,'.'); import core, phys2 as P
 L=core.L
-CFG=P.Cfg(dod=0.9,R=0.5,latch_days=3,T_latch=5.0,driver='Hclim')   # selected on Jun-Dec 2025 only
+import os
+CFG=P.Cfg(dod=float(os.environ.get('PGL_DOD','0.9')),R=float(os.environ.get('PGL_R','0.5')),latch_days=int(os.environ.get('PGL_NL','3')),T_latch=float(os.environ.get('PGL_TL','5.0')),driver='Hclim')   # selected on Jun-Dec 2025 only
 DATA_F=['act_t','a_t','act_m7','act_m14','run_len','net_t','net_m7','net_chg7','dT_t','dT_m7','Tmean_t','Tmin_t','Tmean_m7',
         'ntemp_t','doy_sin','doy_cos','m_pole','m_lamp','m_bldg','age']
 COLD_DATA_F=[f for f in DATA_F if f not in ('act_t','a_t','act_m7','act_m14','run_len')]

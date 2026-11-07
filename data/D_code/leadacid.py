@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Lead-acid (VRLA deep-cycle) energy-autonomy model for the 20-node network.
 
-Replaces the lithium-parameterised model of the original manuscript.
-Everything downstream of the battery description is regenerated here.
+Daily VRLA energy-balance constants and helper routines.
+
 """
 import numpy as np
 
